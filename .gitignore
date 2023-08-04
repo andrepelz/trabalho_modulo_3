@@ -1,0 +1,7 @@
+/.vscode
+/src/TrabalhoModuloTres.Api/obj
+/src/TrabalhoModuloTres.Api/bin
+/src/TrabalhoModuloTres.Consumer/obj
+/src/TrabalhoModuloTres.Consumer/bin
+/src/TrabalhoModuloTres.Shared/obj
+/src/TrabalhoModuloTres.Shared/bin
