@@ -1,3 +1,5 @@
+using System.Security.Authentication;
+using MassTransit;
 using TrabalhoModuloTres.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,23 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMassTransit(busConfigurator =>
+{
+    busConfigurator.UsingRabbitMq((context, busFactoryConfigurator) =>
+    {
+        busFactoryConfigurator.Host("jackal-01.rmq.cloudamqp.com", 5671, "zrdaqmiq", h =>
+        {
+            h.Username("zrdaqmiq");
+            h.Password("P_-0fNC98Kiz5kOBrL5Tkz9fod4O6AY6");
+
+            h.UseSsl(s =>
+            {
+                s.Protocol = SslProtocols.Tls12;
+            });
+        });
+    });
+});
 
 var app = builder.Build();
 
